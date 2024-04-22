@@ -74,7 +74,12 @@ if (game.TextChatService.ChatVersion == Enum.ChatVersion.TextChatService) then
 
 			local player = players.LocalPlayer
 			local playerGui = player:WaitForChild("PlayerGui")
+				local chatBar
 
+	repeat task.wait() until game.CoreGui.ExperienceChat.appLayout.chatInputBar.Background.Container.TextContainer.TextBoxContainer:FindFirstChild("TextBox")
+	chatBar = game.CoreGui.ExperienceChat.appLayout.chatInputBar.Background.Container.TextContainer.TextBoxContainer:FindFirstChild("TextBox")
+
+				
 			do
 				local randomstr = function()
 					local characters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
@@ -156,8 +161,8 @@ else
 	local playerGui = player:WaitForChild("PlayerGui")
 	local chatBar
 
-	repeat task.wait() until game.CoreGui.ExperienceChat.appLayout.chatInputBar.Background.Container.TextContainer.TextBoxContainer:FindFirstChild("TextBox")
-	chatBar = game.CoreGui.ExperienceChat.appLayout.chatInputBar.Background.Container.TextContainer.TextBoxContainer:FindFirstChild("TextBox")
+	repeat task.wait() until game.Players.LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame:FindFirstChild("ChatBar") --game.Players.LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar
+	chatBar = game.Players.LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar
 
 	do
 		local randomstr = function()
