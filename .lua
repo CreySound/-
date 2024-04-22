@@ -74,12 +74,12 @@ if (game.TextChatService.ChatVersion == Enum.ChatVersion.TextChatService) then
 
 			local player = players.LocalPlayer
 			local playerGui = player:WaitForChild("PlayerGui")
-				local chatBar
+			local chatBar
 
-	repeat task.wait() until game.CoreGui.ExperienceChat.appLayout.chatInputBar.Background.Container.TextContainer.TextBoxContainer:FindFirstChild("TextBox")
-	chatBar = game.CoreGui.ExperienceChat.appLayout.chatInputBar.Background.Container.TextContainer.TextBoxContainer:FindFirstChild("TextBox")
+			repeat task.wait() until game.CoreGui.ExperienceChat.appLayout.chatInputBar.Background.Container.TextContainer.TextBoxContainer:FindFirstChild("TextBox")
+			chatBar = game.CoreGui.ExperienceChat.appLayout.chatInputBar.Background.Container.TextContainer.TextBoxContainer:FindFirstChild("TextBox")
 
-				
+
 			do
 				local randomstr = function()
 					local characters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"}
@@ -159,10 +159,10 @@ else
 
 	local player = players.LocalPlayer
 	local playerGui = player:WaitForChild("PlayerGui")
-	local chatBar
+	local chatGui, chatBar = playerGui:WaitForChild("Chat")
 
-	repeat task.wait() until game.Players.LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame:FindFirstChild("ChatBar") --game.Players.LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar
-	chatBar = game.Players.LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.ChatBar
+	repeat task.wait() until chatGui:FindFirstChild("ChatBar", true)
+	chatBar = chatGui:FindFirstChild("ChatBar", true)
 
 	do
 		local randomstr = function()
@@ -192,6 +192,12 @@ else
 	end
 
 
+	local old
+	old = hookmetamethod(game, "__namecall", newcclosure(function(self, ...)
+		local method = getnamecallmethod()
+		local args = {...}
+
+
 		if method == "FireServer" and self.Name == "SayMessageRequest" and #args == 2 and not checkcaller() then
 			local newMessage = args[1]
 			for i,v in pairs(custom_chars) do
@@ -203,5 +209,6 @@ else
 			args[1] = newMessage
 			coroutine.wrap(c)
 		end
-
+		return old(self, ...)
+	end))
 end
