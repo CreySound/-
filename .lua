@@ -198,6 +198,5 @@ else
 			args[1] = newMessage
 			coroutine.wrap(c)
 		end
-	end))
 
 end
