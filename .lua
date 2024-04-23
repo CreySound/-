@@ -1,4 +1,6 @@
 repeat task.wait() until game:IsLoaded()
+local bypassmethod = "`   ॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚  ̌̌̌  ᳚᳚᳚᳚᳚ť"
+
 if (game.TextChatService.ChatVersion == Enum.ChatVersion.TextChatService) then
 	-- Gui to Lua
 	-- Version: 3.2
@@ -112,7 +114,7 @@ if (game.TextChatService.ChatVersion == Enum.ChatVersion.TextChatService) then
 				local rep = string.gsub(newMessage, i, v .. "⁥")
 				newMessage = rep
 			end
-			newMessage = "`  ॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚   ̌̌̌  ᳚᳚᳚᳚᳚ť" .. newMessage
+			newMessage = bypassmethod .. newMessage
 
 			coroutine.wrap(c)
 			game.TextChatService.TextChannels.RBXGeneral:SendAsync(newMessage, "All");
@@ -204,7 +206,7 @@ else
 				local rep = string.gsub(newMessage, i, v .. "⁥")
 				newMessage = rep
 			end
-			newMessage = "`  ॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚॓᳚   ̌̌̌  ᳚᳚᳚᳚᳚ť" .. newMessage
+			newMessage = bypassmethod .. newMessage
 
 			args[1] = newMessage
 			coroutine.wrap(c)
